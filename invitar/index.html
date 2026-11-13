@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Te invitaron a un hogar · Domio</title>
+    <link rel="stylesheet" href="/estilo.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="logo">D</div>
+        <a class="brand" href="/">Domio</a>
+      </header>
+
+      <h1>Te invitaron a un hogar en Domio</h1>
+
+      <div class="card" id="with-code" hidden>
+        <p class="muted">Tu código de invitación</p>
+        <p class="code" id="code"></p>
+        <p>
+          <a class="button" id="open">Abrir en Domio</a>
+          <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.jonnier197.hogar"
+            >Instalar desde Google Play</a
+          >
+        </p>
+        <p class="muted">
+          Si la app no se abre sola: instálala, entra con tu cuenta de Google, toca
+          <strong>Unirme con un código</strong> y escribe el código de arriba.
+        </p>
+      </div>
+
+      <div class="card" id="without-code" hidden>
+        <p>Este enlace no trae un código. Pídele a quien te invitó que te lo envíe de nuevo.</p>
+      </div>
+
+      <footer><a href="/privacidad/">Política de privacidad</a></footer>
+    </main>
+
+    <script>
+      // El código solo puede tener letras de la A a la F y números (12 caracteres).
+      const raw = new URLSearchParams(location.search).get("code") || "";
+      const code = raw.toUpperCase().replace(/[^A-F0-9]/g, "").slice(0, 12);
+
+      if (code.length === 12) {
+        document.getElementById("code").textContent = code.replace(/(.{4})(?=.)/g, "$1-");
+        // En Android, intent:// abre la app instalada; si no está, lleva a Google Play.
+        const store = "https://play.google.com/store/apps/details?id=com.jonnier197.hogar";
+        document.getElementById("open").href =
+          "intent://join?code=" + code +
+          "#Intent;scheme=hogarapp;package=com.jonnier197.hogar;S.browser_fallback_url=" +
+          encodeURIComponent(store) + ";end";
+        document.getElementById("with-code").hidden = false;
+      } else {
+        document.getElementById("without-code").hidden = false;
+      }
+    </script>
+  </body>
+</html>
