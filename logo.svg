@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="234 222 580 580">
+  <!-- El logo de Domio (mismo dibujo que en la app, src/components/DomioMark.tsx). -->
+  <style>
+    .door { fill: #3a3b52; }
+    @media (prefers-color-scheme: dark) { .door { fill: #ece8ff; } }
+  </style>
+  <defs>
+    <linearGradient id="l" x1="0" y1="320" x2="0" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7A63DE" />
+      <stop offset="0.55" stop-color="#7A63DE" />
+      <stop offset="1" stop-color="#AB97F7" />
+    </linearGradient>
+    <linearGradient id="r" x1="0" y1="320" x2="0" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A694F4" />
+      <stop offset="0.62" stop-color="#8872E3" />
+      <stop offset="1" stop-color="#6C59C6" />
+    </linearGradient>
+    <clipPath id="cl"><rect x="0" y="0" width="512" height="1024" /></clipPath>
+    <clipPath id="cr"><rect x="512" y="0" width="512" height="1024" /></clipPath>
+  </defs>
+  <g clip-path="url(#cl)">
+    <path d="M324 650 L324 497 L512 380" stroke="url(#l)" stroke-width="100"
+      stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+  <g clip-path="url(#cr)">
+    <path d="M512 380 L700 497 L700 650" stroke="url(#r)" stroke-width="100"
+      stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+  <path class="door"
+    d="M468 694 Q460 694 460 686 L460 592 Q460 548 512 548 Q564 548 564 592 L564 686 Q564 694 556 694 Z" />
+  <circle cx="721" cy="351" r="52" fill="#B7A3FC" />
+</svg>

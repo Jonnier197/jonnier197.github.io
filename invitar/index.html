@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Te invitaron a un hogar · Domio</title>
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/estilo.css" />
   </head>
   <body>
-    <main>
-      <header>
-        <div class="logo">D</div>
-        <a class="brand" href="/">Domio</a>
-      </header>
+    <header class="topbar">
+      <div class="wrap">
+        <a class="brand" href="/"><img src="/logo.svg" alt="" />domio</a>
+        <nav><a class="button small" href="/descargar/">Descargar</a></nav>
+      </div>
+    </header>
 
+    <main class="doc">
       <h1>Te invitaron a un hogar en Domio</h1>
 
       <div class="card" id="with-code" hidden>
@@ -21,9 +24,7 @@
         <p class="code" id="code"></p>
         <p>
           <a class="button" id="open">Abrir en Domio</a>
-          <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.jonnier197.hogar"
-            >Instalar desde Google Play</a
-          >
+          <a class="button secondary" href="/descargar/">Descargar Domio</a>
         </p>
         <p class="muted">
           Si la app no se abre sola: instálala, entra con tu cuenta de Google, toca
@@ -35,8 +36,24 @@
         <p>Este enlace no trae un código. Pídele a quien te invitó que te lo envíe de nuevo.</p>
       </div>
 
-      <footer><a href="/privacidad/">Política de privacidad</a></footer>
     </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div>
+          <a class="brand" href="/"><img src="/logo.svg" alt="" />domio</a>
+          <p class="slogan">Tu hogar. Todo en orden.</p>
+        </div>
+        <nav>
+          <a href="/">Inicio</a>
+          <a href="/descargar/">Descargar</a>
+          <a href="/privacidad/">Privacidad</a>
+          <a href="/borrar-cuenta/">Borrar tu cuenta</a>
+          <a href="mailto:lumoranexora.dev@gmail.com">Contacto</a>
+        </nav>
+      </div>
+    </footer>
+    <script src="/web.js"></script>
 
     <script>
       // El código solo puede tener letras de la A a la F y números (12 caracteres).
@@ -45,8 +62,9 @@
 
       if (code.length === 12) {
         document.getElementById("code").textContent = code.replace(/(.{4})(?=.)/g, "$1-");
-        // En Android, intent:// abre la app instalada; si no está, lleva a Google Play.
-        const store = "https://play.google.com/store/apps/details?id=com.jonnier197.hogar";
+        // En Android, intent:// abre la app instalada; si no está, lleva a la página de descarga.
+        // (Cuando Domio esté en Google Play, aquí y en el botón va el enlace de la tienda.)
+        const store = "https://jonnier197.github.io/descargar/";
         document.getElementById("open").href =
           "intent://join?code=" + code +
           "#Intent;scheme=hogarapp;package=com.jonnier197.hogar;S.browser_fallback_url=" +

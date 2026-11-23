@@ -1,11 +1,20 @@
+/* Estilo de toda la web de Domio: los mismos colores de la app (src/theme/palettes.ts). */
+
 :root {
   --bg: #fbf7fb;
   --surface: #ffffff;
   --text: #1f1b2b;
   --muted: #6b6578;
   --primary: #7962dd;
+  --primary-strong: #5b46c4;
   --primary-text: #ffffff;
-  --border: #e7e1ec;
+  --soft: #eee8fe;
+  --soft-text: #4b3aa8;
+  --tint: #f4effd;
+  --border: #e6e0f5;
+  --night: #241d4a;
+  --shadow: 0 14px 40px rgba(91, 70, 196, 0.16);
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,9 +23,16 @@
     --surface: #221f2d;
     --text: #f2eff7;
     --muted: #a7a1b5;
-    --primary: #9a86ec;
-    --primary-text: #17151f;
-    --border: #35314a;
+    --primary: #8e78ea;
+    --primary-strong: #a694f4;
+    --primary-text: #ffffff;
+    --soft: #2d2850;
+    --soft-text: #cfc4ff;
+    --tint: #1d1a2b;
+    --border: #37344a;
+    --night: #2d2560;
+    --shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
   }
 }
 
@@ -24,59 +40,161 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-main {
-  max-width: 720px;
+a {
+  color: var(--primary);
+}
+
+img,
+svg {
+  display: block;
+}
+
+.wrap {
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 32px 16px 64px;
+  padding: 0 20px;
 }
 
-header {
+/* ---------- Barra de arriba ---------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.topbar.scrolled {
+  border-bottom-color: var(--border);
+}
+
+.topbar .wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--primary);
-  color: var(--primary-text);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 22px;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
 }
 
 .brand {
-  font-size: 22px;
-  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--text);
   text-decoration: none;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.brand img {
+  width: 34px;
+  height: 34px;
+}
+
+.topbar nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.topbar nav a:not(.button) {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.topbar nav a:not(.button):hover {
+  color: var(--text);
+}
+
+/* ---------- Botones ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--primary);
+  color: var(--primary-text);
+  padding: 13px 22px;
+  border-radius: 14px;
+  border: 1.5px solid transparent;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.button:hover {
+  background: var(--primary-strong);
+  transform: translateY(-1px);
+}
+
+.button svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.button.big {
+  padding: 16px 26px;
+  font-size: 17px;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(121, 98, 221, 0.32);
+}
+
+.button.small {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.button.secondary:hover {
+  background: var(--soft);
+}
+
+/* ---------- Páginas de texto (privacidad, borrar cuenta, invitar) ---------- */
+
+main.doc {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
 }
 
 h1 {
-  font-size: 28px;
-  line-height: 1.25;
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
   margin: 0 0 8px;
 }
 
 h2 {
   font-size: 20px;
   margin: 32px 0 8px;
-}
-
-p,
-li {
-  color: var(--text);
 }
 
 .muted {
@@ -87,26 +205,17 @@ li {
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 16px 20px;
+  border-radius: 18px;
+  padding: 18px 22px;
   margin: 16px 0;
 }
 
-.button {
-  display: inline-block;
-  background: var(--primary);
-  color: var(--primary-text);
-  padding: 12px 20px;
-  border-radius: 14px;
-  font-weight: 700;
-  text-decoration: none;
-  margin: 4px 8px 4px 0;
+.card > :first-child {
+  margin-top: 0;
 }
 
-.button.secondary {
-  background: transparent;
-  color: var(--primary);
-  border: 1px solid var(--primary);
+.card > :last-child {
+  margin-bottom: 0;
 }
 
 .code {
@@ -114,12 +223,80 @@ li {
   letter-spacing: 2px;
 }
 
-a {
+/* ---------- Pie ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0 36px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.site-footer .brand {
+  font-size: 18px;
+}
+
+.site-footer .brand img {
+  width: 26px;
+  height: 26px;
+}
+
+.site-footer .slogan {
+  margin: 2px 0 0;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.site-footer nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer nav a:hover {
   color: var(--primary);
 }
 
-footer {
-  margin-top: 48px;
-  color: var(--muted);
-  font-size: 14px;
+/* ---------- Aparecer al bajar ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.shown {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .topbar nav a:not(.button) {
+    display: none;
+  }
+  h1 {
+    font-size: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
