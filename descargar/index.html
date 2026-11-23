@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Descargar Domio</title>
+    <link rel="stylesheet" href="/estilo.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="logo">D</div>
+        <a class="brand" href="/">Domio</a>
+      </header>
+
+      <h1>Descargar Domio</h1>
+
+      <div class="card">
+        <p class="muted" id="version">Última versión para Android</p>
+        <p>
+          <a class="button" id="download"
+            href="https://github.com/jonnier197/jonnier197.github.io/releases/latest/download/domio.apk"
+            >Descargar APK</a
+          >
+        </p>
+        <ol>
+          <li>Toca <strong>Descargar APK</strong> y espera a que termine.</li>
+          <li>Abre el archivo descargado (en la barra de avisos o en Descargas).</li>
+          <li>
+            Si Android lo pide, permite <strong>instalar apps de esta fuente</strong> y vuelve
+            atrás.
+          </li>
+          <li>Toca <strong>Actualizar</strong> (o <strong>Instalar</strong> si es la primera vez).</li>
+        </ol>
+        <p class="muted">
+          Si ya tienes Domio, se instala encima: tus hogares, listas y tareas se quedan.
+        </p>
+      </div>
+
+      <footer><a href="/privacidad/">Política de privacidad</a></footer>
+    </main>
+
+    <script>
+      // Muestra el número de la última versión publicada (si GitHub responde).
+      fetch("https://api.github.com/repos/jonnier197/jonnier197.github.io/releases/latest")
+        .then((res) => (res.ok ? res.json() : null))
+        .then((release) => {
+          if (!release || !release.tag_name) return;
+          const version = String(release.tag_name).replace(/^v/, "");
+          document.getElementById("version").textContent =
+            "Versión " + version + " para Android";
+        })
+        .catch(() => {});
+    </script>
+  </body>
+</html>
