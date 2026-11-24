@@ -1,6 +1,14 @@
 // Detalles compartidos de la web de Domio: la línea bajo la barra al bajar y las secciones que
 // aparecen suavemente al llegar a ellas.
 (function () {
+  // Quien llegue por la dirección vieja pasa a la nueva, a la misma página y con su código.
+  if (location.hostname === "jonnier197.github.io") {
+    location.replace(
+      "https://domio.lumoranexora.com" + location.pathname + location.search + location.hash
+    );
+    return;
+  }
+
   var bar = document.querySelector(".topbar");
   if (bar) {
     var onScroll = function () {

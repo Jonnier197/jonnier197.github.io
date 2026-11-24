@@ -64,7 +64,7 @@
         document.getElementById("code").textContent = code.replace(/(.{4})(?=.)/g, "$1-");
         // En Android, intent:// abre la app instalada; si no está, lleva a la página de descarga.
         // (Cuando Domio esté en Google Play, aquí y en el botón va el enlace de la tienda.)
-        const store = "https://jonnier197.github.io/descargar/";
+        const store = "https://domio.lumoranexora.com/descargar/";
         document.getElementById("open").href =
           "intent://join?code=" + code +
           "#Intent;scheme=hogarapp;package=com.jonnier197.hogar;S.browser_fallback_url=" +
