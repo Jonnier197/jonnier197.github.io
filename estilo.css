@@ -227,45 +227,112 @@ h2 {
 
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: 28px 0 36px;
   color: var(--muted);
   font-size: 14px;
 }
 
-.site-footer .wrap {
+.foot-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 20px;
+  padding: 26px 0;
+}
+
+.foot-row + .foot-row {
+  border-top: 1px solid var(--border);
+}
+
+.foot-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 32px;
 }
 
 .site-footer .brand {
-  font-size: 18px;
+  font-size: 24px;
+  line-height: 1.1;
 }
 
 .site-footer .brand img {
-  width: 26px;
-  height: 26px;
+  width: 42px;
+  height: 42px;
 }
 
-.site-footer .slogan {
-  margin: 2px 0 0;
+.site-footer .brand small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
 }
 
 .site-footer nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 20px;
+  gap: 8px 22px;
 }
 
 .site-footer nav a {
-  color: var(--muted);
+  color: var(--text);
+  font-weight: 500;
   text-decoration: none;
 }
 
 .site-footer nav a:hover {
   color: var(--primary);
+}
+
+.site-footer .legal a + a {
+  border-left: 2px solid var(--primary);
+  padding-left: 22px;
+}
+
+.site-footer .rights {
+  margin: 0;
+  font-size: 13px;
+  text-align: right;
+}
+
+.social {
+  display: flex;
+  gap: 12px;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--primary);
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.social a:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.social svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 640px) {
+  .foot-main,
+  .foot-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .site-footer .rights {
+    text-align: left;
+  }
 }
 
 /* ---------- Aparecer al bajar ---------- */
